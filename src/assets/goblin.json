@@ -1,0 +1,62 @@
+{
+  "frames": {
+    "goblin_01.png": {
+      "frame": { "x": 0, "y": 0, "w": 16, "h": 16 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
+      "sourceSize": { "w": 16, "h": 16 },
+      "anchor": { "x": 0.5, "y": 1.5 }
+    },
+    "goblin_02.png": {
+      "frame": { "x": 16, "y": 0, "w": 16, "h": 16 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
+      "sourceSize": { "w": 16, "h": 16 },
+      "anchor": { "x": 0.5, "y": 1.5 }
+    },
+    "goblin_03.png": {
+      "frame": { "x": 32, "y": 0, "w": 16, "h": 16 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
+      "sourceSize": { "w": 16, "h": 16 },
+      "anchor": { "x": 0.5, "y": 1.5 }
+    },
+    "goblin_04.png": {
+      "frame": { "x": 48, "y": 0, "w": 16, "h": 16 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
+      "sourceSize": { "w": 16, "h": 16 },
+      "anchor": { "x": 0.5, "y": 1.5 }
+    },
+    "goblin_05.png": {
+      "frame": { "x": 64, "y": 0, "w": 16, "h": 16 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
+      "sourceSize": { "w": 16, "h": 16 },
+      "anchor": { "x": 0.5, "y": 1.5 }
+    }
+  },
+  "animations": {
+    "goblin": [
+      "goblin_01.png",
+      "goblin_02.png",
+      "goblin_03.png",
+      "goblin_04.png",
+      "goblin_05.png"
+    ]
+  },
+  "meta": {
+    "app": "https://www.codeandweb.com/texturepacker",
+    "version": "1.0",
+    "image": "goblin.png",
+    "format": "RGBA8888",
+    "size": { "w": 80, "h": 16 },
+    "scale": "1",
+    "smartupdate": "$TexturePacker:SmartUpdate:fc45b19ede6d4be863c1a578728d67f4:af3dbbaeb354cd8ef368e53193fabc19:56fcc8a03b90e324aea6762dac4dd6a8$"
+  }
+}
