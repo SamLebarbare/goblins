@@ -3,7 +3,7 @@ import * as PIXI from "pixi.js";
 
 class Goblin extends PIXI.extras.AnimatedSprite {
   static speed() {
-    return 1;
+    return 2;
   }
   constructor(initialPos, game) {
     super(game.sheet.animations.goblin);

@@ -44,18 +44,20 @@ class Game extends PIXI.Application {
     blocks.forEach(b => b.render());
   }
 
-  addGoblin() {
-    this.stop();
-    const pos = { x: 100, y: this.groundLevel - 100 };
-    const goblin = new Goblin(pos, this);
-    this.stage.addChild(goblin);
+  *addGoblin(next) {
     this.start();
+    for (let i = 100; i < 150; i++) {
+      const pos = { x: i, y: this.groundLevel - 100 };
+      const goblin = new Goblin(pos, this);
+      this.stage.addChild(goblin);
+      yield setTimeout(next.args, 1000);
+    }
   }
 
   *run() {
     yield this.load();
     this.renderStage();
-    this.addGoblin();
+    yield this.addGoblin();
     return this;
   }
 }
