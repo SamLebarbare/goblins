@@ -8,7 +8,7 @@ class Game extends PIXI.Application {
     super({ width: 1024, height: 512, antialias: true, autoStart: true });
     document.body.appendChild(this.view);
     this.gameLoaded = false;
-    this.groundLevel = this.screen.height / 2 + Block.size();
+    this.groundLevel = this.screen.height / 2;
     this.boundary = new Rectangle(0, 0, this.screen.width, this.screen.height);
     watt.wrapAll(this);
   }
@@ -33,18 +33,20 @@ class Game extends PIXI.Application {
         y += Block.size()
       ) {
         let block = null;
+        let falling = y < this.screen.height - Block.size();
         if (y === this.groundLevel) {
-          block = new Block(this, x, y, 0x24921a);
+          block = new Block(this, x, y, 0x24921a, falling);
         } else {
-          block = new Block(this, x, y);
+          block = new Block(this, x, y, null, falling);
         }
         blocks.push(block);
       }
     }
     blocks.forEach(b => b.render());
+    blocks.forEach(b => b.mount());
   }
 
-  *addGoblin(next) {
+  *spawnGoblins(next) {
     this.start();
     for (let i = 100; i < 150; i++) {
       const pos = { x: i, y: this.groundLevel - 100 };
@@ -57,7 +59,7 @@ class Game extends PIXI.Application {
   *run() {
     yield this.load();
     this.renderStage();
-    yield this.addGoblin();
+    yield this.spawnGoblins();
     return this;
   }
 }

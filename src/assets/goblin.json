@@ -6,7 +6,7 @@
       "trimmed": false,
       "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
       "sourceSize": { "w": 16, "h": 16 },
-      "anchor": { "x": 0.5, "y": 1.5 }
+      "anchor": { "x": 0.5, "y": 1 }
     },
     "goblin_02.png": {
       "frame": { "x": 16, "y": 0, "w": 16, "h": 16 },
@@ -14,7 +14,7 @@
       "trimmed": false,
       "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
       "sourceSize": { "w": 16, "h": 16 },
-      "anchor": { "x": 0.5, "y": 1.5 }
+      "anchor": { "x": 0.5, "y": 1 }
     },
     "goblin_03.png": {
       "frame": { "x": 32, "y": 0, "w": 16, "h": 16 },
@@ -22,7 +22,7 @@
       "trimmed": false,
       "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
       "sourceSize": { "w": 16, "h": 16 },
-      "anchor": { "x": 0.5, "y": 1.5 }
+      "anchor": { "x": 0.5, "y": 1 }
     },
     "goblin_04.png": {
       "frame": { "x": 48, "y": 0, "w": 16, "h": 16 },
@@ -30,7 +30,7 @@
       "trimmed": false,
       "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
       "sourceSize": { "w": 16, "h": 16 },
-      "anchor": { "x": 0.5, "y": 1.5 }
+      "anchor": { "x": 0.5, "y": 1 }
     },
     "goblin_05.png": {
       "frame": { "x": 64, "y": 0, "w": 16, "h": 16 },
@@ -38,7 +38,7 @@
       "trimmed": false,
       "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
       "sourceSize": { "w": 16, "h": 16 },
-      "anchor": { "x": 0.5, "y": 1.5 }
+      "anchor": { "x": 0.5, "y": 1 }
     }
   },
   "animations": {

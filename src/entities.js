@@ -24,12 +24,7 @@ class Goblin extends PIXI.extras.AnimatedSprite {
     let box = null;
     switch (direction) {
       case 2:
-        box = new Rectangle(
-          this.x + 8,
-          this.y - Block.size(),
-          Block.size() - 2,
-          Block.size()
-        );
+        box = new Rectangle(this.x + 8, this.y, Block.size() - 2, 2);
         break;
       case 4:
         box = new Rectangle(this.x + 2, this.y - 10, 1, 1);
@@ -105,6 +100,14 @@ class Sky {
     this.gfx.beginFill(0x81bbf0, 1);
     this.gfx.drawRect(0, 0, this.app.screen.width, this.app.screen.height / 2);
     this.gfx.endFill();
+    this.gfx.beginFill(0x00, 1);
+    this.gfx.drawRect(
+      0,
+      this.app.screen.height / 2,
+      this.app.screen.width,
+      this.app.screen.height
+    );
+    this.gfx.endFill();
   }
 }
 
@@ -112,9 +115,9 @@ class Block {
   static size() {
     return 10;
   }
-  constructor(game, x, y, color, solidity) {
+  constructor(game, x, y, color, isFalling) {
     this.type = "block";
-    this.solidity = solidity || 1;
+    this.isFalling = isFalling;
     this.color = color || 0x4c2a00;
     this.gfx = new PIXI.Graphics();
     this.msk = new PIXI.Graphics();
@@ -124,10 +127,37 @@ class Block {
     this.y = y;
     this.h = Block.size();
     this.w = Block.size();
-    this.boundary = new Rectangle(x - this.w, y - this.h, this.h, this.w);
     this.gfx.on("mouseover", this.hit.bind(this));
     this.qt = game.qt;
     this.qt.insert(this);
+  }
+
+  collide() {
+    let entities = [];
+    let box = new Rectangle(
+      this.x - 5,
+      this.y + Block.size(),
+      Block.size() + 5,
+      2
+    );
+
+    this.qt.query(box, entities);
+    let collide = false;
+    if (entities.length > 0) {
+      if (entities.filter(e => e != this).length > 0) {
+        collide = true;
+      }
+    }
+    return collide;
+  }
+
+  update(time) {
+    if (!this.collide()) {
+      this.y += Block.size();
+      this.render();
+      this.ticker.update(time);
+    }
+    requestAnimationFrame(this.update.bind(this));
   }
 
   hit(e) {
@@ -138,14 +168,19 @@ class Block {
     }
   }
 
+  mount() {
+    if (this.isFalling === true) {
+      this.ticker = new PIXI.ticker.Ticker();
+      this.ticker.autoStart = false;
+      this.ticker.stop();
+      this.update(0);
+    }
+  }
+
   render() {
+    this.gfx.clear();
     this.gfx.beginFill(this.color, 1);
-    this.gfx.drawRect(
-      this.boundary.x,
-      this.boundary.y,
-      this.boundary.h,
-      this.boundary.w
-    );
+    this.gfx.drawRect(this.x, this.y, this.h, this.w);
     this.gfx.endFill();
   }
 }
