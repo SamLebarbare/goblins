@@ -1,7 +1,7 @@
 import watt from "gigawatts";
 import spritesheetLoader from "./spritesheetLoader.js";
 import { QuadTree, Point, Rectangle } from "./quad.js";
-import { Block, Sky, Goblin } from "./entities.js";
+import { Block, Sky, ActionBar, Goblin } from "./entities.js";
 
 class Game extends PIXI.Application {
   constructor() {
@@ -10,6 +10,8 @@ class Game extends PIXI.Application {
     this.gameLoaded = false;
     this.groundLevel = this.screen.height / 2;
     this.boundary = new Rectangle(0, 0, this.screen.width, this.screen.height);
+    this.qt = new QuadTree(this.boundary, 1, true);
+    this.selectedMode = 2;
     watt.wrapAll(this);
   }
 
@@ -23,7 +25,6 @@ class Game extends PIXI.Application {
   renderStage() {
     const blocks = [];
     const sky = new Sky(this);
-    this.qt = new QuadTree(this.boundary, 1);
     sky.render();
 
     for (let x = 0; x <= this.screen.width + Block.size(); x += Block.size()) {
@@ -44,15 +45,41 @@ class Game extends PIXI.Application {
     }
     blocks.forEach(b => b.render());
     blocks.forEach(b => b.mount());
+    const actionBar = new ActionBar(
+      this,
+      [
+        { text: "⇐", mode: 4, quantity: 10 },
+        { text: "⇓", mode: 2, quantity: 10 },
+        { text: "⇒", mode: 6, quantity: 10 }
+      ],
+      info => {
+        this.selectedAction = () => {
+          if (info.quantity > 0) {
+            this.selectedMode = info.mode;
+            info.quantity -= 1;
+            console.log(info.label);
+
+            return {
+              mode: info.mode,
+              use: () => {
+                info.label.text = `${info.text} ${info.quantity}`;
+              }
+            };
+          }
+          return 0;
+        };
+      }
+    );
+    actionBar.render();
   }
 
   *spawnGoblins(next) {
     this.start();
-    for (let i = 100; i < 150; i++) {
+    for (let i = 100; i < 110; i++) {
       const pos = { x: i, y: this.groundLevel - 100 };
       const goblin = new Goblin(pos, this);
       this.stage.addChild(goblin);
-      yield setTimeout(next.args, 1000);
+      yield setTimeout(next.args, 2000);
     }
   }
 
